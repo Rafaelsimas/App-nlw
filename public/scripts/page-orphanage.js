@@ -1,51 +1,48 @@
-
 const options = {
-    dragging:false,
-    touchZoom:false,
-    doubleClickZoom:false,
-    scrollWheelZoom:false,
-    zoomControl:false
-
-}
+  dragging: false,
+  touchZoom: false,
+  doubleClickZoom: false,
+  scrollWheelZoom: false,
+  zoomControl: false,
+};
 
 // create map
-const map = L.map('mapid', options).setView([-22.5283723,-41.9410688,], 15);
+const map = L.map("mapid", options).setView([-22.5283723, -41.9410688], 15);
 // create and add tilelayer
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',).addTo(map)
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
 // popup
 
 // create icon
 const icon = L.icon({
-    iconUrl: "../../public/images/map-marker.svg",
-    iconSize:[58, 68],
-    iconAnchor:[29, 68],
-    popupAnchor:[170, 2],
-})
-
+  iconUrl: ".././images/map-marker.svg",
+  iconSize: [58, 68],
+  iconAnchor: [29, 68],
+  popupAnchor: [170, 2],
+});
 
 // create and add marker
-L.marker([-22.5283723,-41.9410688,], {icon}).addTo(map)
+const spanLat = document.querySelector("span[data-lat");
+const spanLng = document.querySelector("span[data-lng");
+
+L.marker([spanLat.dataset.lat, spanLng.dataset.lng], { icon }).addTo(map);
 
 // image galery
 
-function selectImage(event){
-    const button = event.currentTarget
+function selectImage(event) {
+  const button = event.currentTarget;
 
-    const buttons = document.querySelectorAll(".images button")
+  const buttons = document.querySelectorAll(".images button");
 
-    buttons.forEach(removeActiveClass)
+  buttons.forEach(removeActiveClass);
 
-    function removeActiveClass(button){
-        button.classList.remove("active")
-    }
+  function removeActiveClass(button) {
+    button.classList.remove("active");
+  }
 
-   const image = button.children[0]
-   const imageContainer = document.querySelector(".orphanage-details > img")
+  const image = button.children[0];
+  const imageContainer = document.querySelector(".orphanage-details > img");
 
-   imageContainer.src = image.src
+  imageContainer.src = image.src;
 
-    button.classList.add('active')
-
-
+  button.classList.add("active");
 }
-   
